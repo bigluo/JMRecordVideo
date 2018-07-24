@@ -13,8 +13,9 @@
 
 @implementation JMVideoCaptureUtility
 
-static NSString* const kVideoFileName = @"output.mov";
-static NSString* const kAudioFileName = @"output.mov";
+static NSString* const kVideoFileName = @"outputVideo.mov";
+static NSString* const kAudioFileName = @"outputAudio.wav";
+
 + (NSString *)getTempVideoCaptureFilePath{
     NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:kVideoFileName];
@@ -28,8 +29,22 @@ static NSString* const kAudioFileName = @"output.mov";
     return filePath;
 }
 
-+ (void)mergeVideo:(NSString *)videoPath andAudio:(NSString *)audioPath andTarget:(id)target andAction:(SEL)action
++ (void)removeAudioAndVideoTempFile{
+    NSString *videoFilePath = [JMVideoCaptureUtility getTempVideoCaptureFilePath];
+    NSString *audioFilePath = [JMVideoCaptureUtility getTempAudioCaptureFilePath];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:videoFilePath]){
+        [fileManager removeItemAtPath:videoFilePath error:nil];
+    }
+    if ([fileManager fileExistsAtPath:audioFilePath]){
+        [fileManager removeItemAtPath:audioFilePath error:nil];
+    }
+}
+
++ (void)mergeVideo:(NSString *)videoPath andAudio:(NSString *)audioPath complete:(completeBlock)complete
 {
+    NSError *error;
+
     NSURL *audioUrl=[NSURL fileURLWithPath:audioPath];
     NSURL *videoUrl=[NSURL fileURLWithPath:videoPath];
     
@@ -42,21 +57,24 @@ static NSString* const kAudioFileName = @"output.mov";
                                                                                         preferredTrackID:kCMPersistentTrackID_Invalid];
     [compositionCommentaryTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration)
                                         ofTrack:[[audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0]
-                                         atTime:kCMTimeZero error:nil];
-    
+                                         atTime:kCMTimeZero error:&error];
+    if (error) {
+        complete(error);
+        return;
+    }
     
     //混合视频
     AVMutableCompositionTrack *compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo
                                                                                    preferredTrackID:kCMPersistentTrackID_Invalid];
     [compositionVideoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration)
                                    ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0]
-                                    atTime:kCMTimeZero error:nil];
+                                    atTime:kCMTimeZero error:&error];
     AVAssetExportSession* _assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition
                                                                           presetName:AVAssetExportPresetPassthrough];
-    
-//    [audioAsset release];
-//    [videoAsset release];
-    
+    if (error) {
+        complete(error);
+        return;
+    }
     //保存混合后的文件的过程
     NSString* videoName = @"export2.mov";
     NSString *exportPath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:videoName];
@@ -76,13 +94,7 @@ static NSString* const kAudioFileName = @"output.mov";
      ^(void )
      {
          NSLog(@"完成了");
-         // your completion code here
-         if ([target respondsToSelector:action])
-         {
-             [target performSelector:action withObject:exportPath withObject:nil];
-         }
+         complete(nil);
      }];
-    
-    //[_assetExport release];
 }
 @end

@@ -8,18 +8,12 @@
 
 #import "JMAudioRecorder.h"
 
-
 @implementation JMAudioRecorder
 #pragma mark - 开始录音
 - (void)beginRecordByFileName:(NSString*)_fileName;{
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toRecordOrPause:) name:@"toRecordOrPause" object:nil];
-    
-    self.recordFileName = _fileName;
-    //设置文件名和录音路径
-     self.recordFilePath = [self getPathByFileName:_recordFileName ofType:@"wav"];
+    self.recordFilePath = _fileName;
     //初始化录音
-    AVAudioRecorder *temp = [[AVAudioRecorder alloc]initWithURL:[NSURL URLWithString:[_recordFileName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]
+    AVAudioRecorder *temp = [[AVAudioRecorder alloc]initWithURL:[NSURL URLWithString:[_recordFilePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]
                                                        settings:[self getAudioRecorderSettingDict]
                                                           error:nil];
     self.recorder = temp;
@@ -31,25 +25,11 @@
     [self.recorder record];
 }
 
-#pragma mark - 开始或结束
--(void)toRecordOrPause:(NSNotification*)sender
-{
-    NSString* str=(NSString*)[sender object];
-    if ([str intValue]) {
-        [self startRecord];
-    }
-    else{
-        [self pauseRecord];
-    }
-}
-
-#pragma mark - 录音开始
 -(void)startRecord{
     [self.recorder record];
     _nowPause=NO;
 }
 
-#pragma mark - 录音暂停
 -(void)pauseRecord{
     if (self.recorder.isRecording) {
         [self.recorder pause];
@@ -57,20 +37,12 @@
     }
 }
 
-#pragma mark - 录音结束
 - (void)endRecord{
     if (self.recorder.isRecording||(!self.recorder.isRecording&&_nowPause)) {
         [self.recorder stop];
         self.recorder = nil;
-//        [self.delegate wavComplete];
+        [self.delegate wavComplete];
     }
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"toRecordOrPause" object:nil];
-}
-
-- (NSString*)getPathByFileName:(NSString *)_fileName ofType:(NSString *)_type
-{
-    NSString* fileDirectory = [[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:_fileName]stringByAppendingPathExtension:_type];
-    return fileDirectory;
 }
 
 - (NSDictionary*)getAudioRecorderSettingDict

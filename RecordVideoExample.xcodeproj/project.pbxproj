@@ -7,24 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D0160F22100B1AB00BCF217 /* JMVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0160EC2100B1AA00BCF217 /* JMVideoCapture.m */; };
+		9D0160F32100B1AB00BCF217 /* JMAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0160ED2100B1AA00BCF217 /* JMAudioRecorder.m */; };
+		9D0160F42100B1AB00BCF217 /* JMVideoCaptureUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0160F12100B1AB00BCF217 /* JMVideoCaptureUtility.m */; };
+		9D1F6B032102CAE500CDE946 /* JMVideoCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1F6B022102CAE500CDE946 /* JMVideoCaptureHelper.m */; };
+		9D86E2DC21072221003ECAE3 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9D86E2DB21072221003ECAE3 /* test.mp4 */; };
 		9DCC0E7320FC9C700064617F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCC0E7220FC9C700064617F /* AppDelegate.m */; };
 		9DCC0E7620FC9C700064617F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCC0E7520FC9C700064617F /* ViewController.m */; };
 		9DCC0E7920FC9C700064617F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DCC0E7720FC9C700064617F /* Main.storyboard */; };
 		9DCC0E7B20FC9C700064617F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DCC0E7A20FC9C700064617F /* Assets.xcassets */; };
 		9DCC0E7E20FC9C700064617F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DCC0E7C20FC9C700064617F /* LaunchScreen.storyboard */; };
 		9DCC0E8120FC9C700064617F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCC0E8020FC9C700064617F /* main.m */; };
-		9DCC0E9320FC9C790064617F /* CGImageContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCC0E8920FC9C780064617F /* CGImageContainer.m */; };
-		9DCC0E9420FC9C790064617F /* BlazeiceAudioRecordAndTransCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCC0E8B20FC9C780064617F /* BlazeiceAudioRecordAndTransCoding.m */; };
-		9DCC0E9520FC9C790064617F /* THCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCC0E8C20FC9C780064617F /* THCapture.m */; };
-		9DCC0E9620FC9C790064617F /* CGContextCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCC0E9020FC9C780064617F /* CGContextCreator.m */; };
-		9DCC0E9720FC9C790064617F /* THCaptureUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCC0E9220FC9C780064617F /* THCaptureUtilities.m */; };
 		9DCC0E9920FC9CD10064617F /*  IDETemplateMacros.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9DCC0E9820FC9CD00064617F /*  IDETemplateMacros.plist */; };
-		9DCC0EA520FDB9B20064617F /* JMVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCC0EA420FDB9B20064617F /* JMVideoCapture.m */; };
-		9DCC0EA820FDBC410064617F /* JMVideoCaptureUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCC0EA720FDBC410064617F /* JMVideoCaptureUtility.m */; };
-		9DCC0EAB20FDD39B0064617F /* JMAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCC0EAA20FDD39B0064617F /* JMAudioRecorder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D0160EC2100B1AA00BCF217 /* JMVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMVideoCapture.m; sourceTree = "<group>"; };
+		9D0160ED2100B1AA00BCF217 /* JMAudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMAudioRecorder.m; sourceTree = "<group>"; };
+		9D0160EE2100B1AB00BCF217 /* JMAudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMAudioRecorder.h; sourceTree = "<group>"; };
+		9D0160EF2100B1AB00BCF217 /* JMVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMVideoCapture.h; sourceTree = "<group>"; };
+		9D0160F02100B1AB00BCF217 /* JMVideoCaptureUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMVideoCaptureUtility.h; sourceTree = "<group>"; };
+		9D0160F12100B1AB00BCF217 /* JMVideoCaptureUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMVideoCaptureUtility.m; sourceTree = "<group>"; };
+		9D1F6B012102CAE500CDE946 /* JMVideoCaptureHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JMVideoCaptureHelper.h; sourceTree = "<group>"; };
+		9D1F6B022102CAE500CDE946 /* JMVideoCaptureHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JMVideoCaptureHelper.m; sourceTree = "<group>"; };
+		9D86E2DB21072221003ECAE3 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		9DCC0E6E20FC9C700064617F /* RecordVideoExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordVideoExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DCC0E7120FC9C700064617F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9DCC0E7220FC9C700064617F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -35,23 +41,7 @@
 		9DCC0E7D20FC9C700064617F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9DCC0E7F20FC9C700064617F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DCC0E8020FC9C700064617F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9DCC0E8920FC9C780064617F /* CGImageContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGImageContainer.m; sourceTree = "<group>"; };
-		9DCC0E8A20FC9C780064617F /* CGContextCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGContextCreator.h; sourceTree = "<group>"; };
-		9DCC0E8B20FC9C780064617F /* BlazeiceAudioRecordAndTransCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlazeiceAudioRecordAndTransCoding.m; sourceTree = "<group>"; };
-		9DCC0E8C20FC9C780064617F /* THCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCapture.m; sourceTree = "<group>"; };
-		9DCC0E8D20FC9C780064617F /* THCaptureUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCaptureUtilities.h; sourceTree = "<group>"; };
-		9DCC0E8E20FC9C780064617F /* CGImageContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGImageContainer.h; sourceTree = "<group>"; };
-		9DCC0E8F20FC9C780064617F /* BlazeiceAudioRecordAndTransCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlazeiceAudioRecordAndTransCoding.h; sourceTree = "<group>"; };
-		9DCC0E9020FC9C780064617F /* CGContextCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGContextCreator.m; sourceTree = "<group>"; };
-		9DCC0E9120FC9C780064617F /* THCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCapture.h; sourceTree = "<group>"; };
-		9DCC0E9220FC9C780064617F /* THCaptureUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCaptureUtilities.m; sourceTree = "<group>"; };
 		9DCC0E9820FC9CD00064617F /*  IDETemplateMacros.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = " IDETemplateMacros.plist"; sourceTree = "<group>"; };
-		9DCC0EA320FDB9B20064617F /* JMVideoCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JMVideoCapture.h; sourceTree = "<group>"; };
-		9DCC0EA420FDB9B20064617F /* JMVideoCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JMVideoCapture.m; sourceTree = "<group>"; };
-		9DCC0EA620FDBC410064617F /* JMVideoCaptureUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JMVideoCaptureUtility.h; sourceTree = "<group>"; };
-		9DCC0EA720FDBC410064617F /* JMVideoCaptureUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JMVideoCaptureUtility.m; sourceTree = "<group>"; };
-		9DCC0EA920FDD39B0064617F /* JMAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JMAudioRecorder.h; sourceTree = "<group>"; };
-		9DCC0EAA20FDD39B0064617F /* JMAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JMAudioRecorder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D86E2DA21072221003ECAE3 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				9D86E2DB21072221003ECAE3 /* test.mp4 */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		9DCC0E6520FC9C700064617F = {
 			isa = PBXGroup;
 			children = (
@@ -84,7 +82,15 @@
 		9DCC0E7020FC9C700064617F /* RecordVideoExample */ = {
 			isa = PBXGroup;
 			children = (
-				9DCC0E8720FC9C780064617F /* RecordVideo */,
+				9D86E2DA21072221003ECAE3 /* Resource */,
+				9D0160EE2100B1AB00BCF217 /* JMAudioRecorder.h */,
+				9D0160ED2100B1AA00BCF217 /* JMAudioRecorder.m */,
+				9D0160EF2100B1AB00BCF217 /* JMVideoCapture.h */,
+				9D0160EC2100B1AA00BCF217 /* JMVideoCapture.m */,
+				9D0160F02100B1AB00BCF217 /* JMVideoCaptureUtility.h */,
+				9D0160F12100B1AB00BCF217 /* JMVideoCaptureUtility.m */,
+				9D1F6B012102CAE500CDE946 /* JMVideoCaptureHelper.h */,
+				9D1F6B022102CAE500CDE946 /* JMVideoCaptureHelper.m */,
 				9DCC0E7120FC9C700064617F /* AppDelegate.h */,
 				9DCC0E7220FC9C700064617F /* AppDelegate.m */,
 				9DCC0E7420FC9C700064617F /* ViewController.h */,
@@ -97,29 +103,6 @@
 				9DCC0E8020FC9C700064617F /* main.m */,
 			);
 			path = RecordVideoExample;
-			sourceTree = "<group>";
-		};
-		9DCC0E8720FC9C780064617F /* RecordVideo */ = {
-			isa = PBXGroup;
-			children = (
-				9DCC0E8E20FC9C780064617F /* CGImageContainer.h */,
-				9DCC0E8920FC9C780064617F /* CGImageContainer.m */,
-				9DCC0E8A20FC9C780064617F /* CGContextCreator.h */,
-				9DCC0E9020FC9C780064617F /* CGContextCreator.m */,
-				9DCC0E8F20FC9C780064617F /* BlazeiceAudioRecordAndTransCoding.h */,
-				9DCC0E8B20FC9C780064617F /* BlazeiceAudioRecordAndTransCoding.m */,
-				9DCC0E9120FC9C780064617F /* THCapture.h */,
-				9DCC0E8C20FC9C780064617F /* THCapture.m */,
-				9DCC0E8D20FC9C780064617F /* THCaptureUtilities.h */,
-				9DCC0E9220FC9C780064617F /* THCaptureUtilities.m */,
-				9DCC0EA320FDB9B20064617F /* JMVideoCapture.h */,
-				9DCC0EA420FDB9B20064617F /* JMVideoCapture.m */,
-				9DCC0EA620FDBC410064617F /* JMVideoCaptureUtility.h */,
-				9DCC0EA720FDBC410064617F /* JMVideoCaptureUtility.m */,
-				9DCC0EA920FDD39B0064617F /* JMAudioRecorder.h */,
-				9DCC0EAA20FDD39B0064617F /* JMAudioRecorder.m */,
-			);
-			path = RecordVideo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,7 +136,7 @@
 				TargetAttributes = {
 					9DCC0E6D20FC9C700064617F = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -183,6 +166,7 @@
 				9DCC0E7E20FC9C700064617F /* LaunchScreen.storyboard in Resources */,
 				9DCC0E9920FC9CD10064617F /*  IDETemplateMacros.plist in Resources */,
 				9DCC0E7B20FC9C700064617F /* Assets.xcassets in Resources */,
+				9D86E2DC21072221003ECAE3 /* test.mp4 in Resources */,
 				9DCC0E7920FC9C700064617F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,16 +178,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DCC0EA820FDBC410064617F /* JMVideoCaptureUtility.m in Sources */,
-				9DCC0EAB20FDD39B0064617F /* JMAudioRecorder.m in Sources */,
-				9DCC0E9420FC9C790064617F /* BlazeiceAudioRecordAndTransCoding.m in Sources */,
 				9DCC0E7620FC9C700064617F /* ViewController.m in Sources */,
-				9DCC0E9520FC9C790064617F /* THCapture.m in Sources */,
-				9DCC0EA520FDB9B20064617F /* JMVideoCapture.m in Sources */,
-				9DCC0E9720FC9C790064617F /* THCaptureUtilities.m in Sources */,
-				9DCC0E9320FC9C790064617F /* CGImageContainer.m in Sources */,
+				9D0160F22100B1AB00BCF217 /* JMVideoCapture.m in Sources */,
+				9D0160F32100B1AB00BCF217 /* JMAudioRecorder.m in Sources */,
+				9D1F6B032102CAE500CDE946 /* JMVideoCaptureHelper.m in Sources */,
 				9DCC0E8120FC9C700064617F /* main.m in Sources */,
-				9DCC0E9620FC9C790064617F /* CGContextCreator.m in Sources */,
+				9D0160F42100B1AB00BCF217 /* JMVideoCaptureUtility.m in Sources */,
 				9DCC0E7320FC9C700064617F /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,11 +318,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = LNC562J4PY;
 				INFOPLIST_FILE = RecordVideoExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bigluo.RecordVideoExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.QiwoSmartLink.KidRobot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "80b26500-6390-4c61-a096-3e278a9ce495";
+				PROVISIONING_PROFILE_SPECIFIER = robotMiniDev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -351,11 +335,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RecordVideoExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bigluo.RecordVideoExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.QiwoSmartLink.KidRobot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

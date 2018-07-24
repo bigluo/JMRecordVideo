@@ -11,11 +11,15 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
 
+@protocol JMAudioRecorderDelegate <NSObject>
+-(void)wavComplete;
+@end
+
 @interface JMAudioRecorder : NSObject
-@property (retain, nonatomic)   AVAudioRecorder     *recorder;
-@property (copy, nonatomic)     NSString            *recordFileName;//录音文件名
-@property (copy, nonatomic)     NSString            *recordFilePath;//录音文件路径
-@property (assign,nonatomic) BOOL nowPause;
+@property (nonatomic, weak)     id<JMAudioRecorderDelegate> delegate;
+@property (nonatomic, strong)   AVAudioRecorder     *recorder;
+@property (nonatomic, strong)   NSString            *recordFilePath;
+@property (nonatomic, assign)   BOOL nowPause;
 
 - (void)beginRecordByFileName:(NSString*)_fileName;
 - (void)endRecord;

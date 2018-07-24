@@ -30,18 +30,20 @@
  * 需要捕捉的视图
  */
 @property(nonatomic, strong) UIView *captureView;
+
 /**
  * 需要捕捉的图层
  */
-@property(nonatomic, strong) CALayer *captureLayer;
+//@property(nonatomic, strong) CALayer *captureLayer;
 
 /**
  * 录制定时器
  */
 @property(strong, nonatomic) CADisplayLink *displayLink;
 
-@property(nonatomic, assign) BOOL recording;
+@property(strong, nonatomic) NSDate *startedAt;
 
+@property(nonatomic,  assign) float spaceDate;
 
 @end
 @implementation JMVideoCapture
@@ -50,55 +52,90 @@
 {
     self = [super init];
     if (self) {
-        self.frameRate = 24;//默认帧率
+//        self.frameRate = 24;默认帧率
         self.captureQueue = dispatch_queue_create([@"com.bigluo.screen_recorder" cStringUsingEncoding:NSUTF8StringEncoding], NULL);
     }
     
     return self;
 }
 
-- (bool)startRecordingWithCaptureView:(UIView *)captureView
+- (bool)beginRecordWithView:(UIView *)recordView
 {
     bool result = NO;
-    if (! _recording && captureView)
+    if (recordView)
     {
-        self.captureView = captureView;
+        self.captureView = recordView;
         [self setUpWriter];
-//            startedAt = [NSDate date];
-            _recording = true;
-//            _writing = false;
+        self.startedAt = [NSDate date];
+        self.spaceDate=0;
         self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(drawFrame)];
             //            self.displayLink.frameInterval = 2;//用来设置间隔多少帧调用一次selector方法，默认值是1，即每帧都调用一次。
-                self.displayLink.frameInterval = 1.0/_frameRate;
-            //            //如果是普通的
-                [self.displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];//UITrackingRunLoopMode
-            //        NSDate *nowDate = [NSDate date];
-//            timer = [NSTimer scheduledTimerWithTimeInterval:1.0/24 target:self selector:@selector(drawFrame) userInfo:nil repeats:YES];
-//            [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+            if (_frameRate != 0) {
+                //preferredFramesPerSecond
+                 self.displayLink.frameInterval = 1.0/_frameRate;
+            }
+            [self.displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
         }
     return result;
 }
 
-- (void)endRecording
+- (void)endRecord
 {
     dispatch_async(_captureQueue, ^
                    {
-                       if (_recording) {
-                           _recording = false;
-                           [self.displayLink invalidate];
-                           self.displayLink = nil;
-                           [self completeRecordingSession];
-                           [self cleanupWriter];
-                       }
+                       [self.displayLink invalidate];
+                       self.displayLink = nil;
+                       [self completeRecordingSession];
+                       [self cleanupWriter];
                    });
 }
 
 - (void)drawFrame
 {
     static int count = 0;
-    if (!_writing) {
-        [self performSelectorInBackground:@selector(getFrame) withObject:nil];
-    }
+    dispatch_async(self.captureQueue, ^
+                   {
+                       //if (!_writing) {
+                       //    _writing = true;
+                       @try {
+                           __block UIImage *image = nil;
+                           dispatch_sync(dispatch_get_main_queue(), ^{
+                               //CGImageRef cgImage = nil;
+                               //截出来的是原图（YES 0.0 质量高）
+                           UIGraphicsBeginImageContextWithOptions(self.captureView.bounds.size,YES,0);
+
+                           //之前YES unActive状态屏幕会闪
+                           [self.captureView drawViewHierarchyInRect:self.captureView.bounds afterScreenUpdates:NO];
+
+                           image = UIGraphicsGetImageFromCurrentImageContext();
+                           //CGImageRef cgImage = CGImageCreateCopy(image.CGImage);
+
+                           UIGraphicsEndImageContext();
+                           
+//                           UIGraphicsBeginImageContextWithOptions(self.captureLayer.frame.size, NO, [UIScreen mainScreen].scale);
+// UIGraphicsBeginImageContextWithOptions(self.captureLayer.frame.size, NO, 0);
+//
+//                               [self.captureLayer renderInContext:UIGraphicsGetCurrentContext()];
+//                               image = UIGraphicsGetImageFromCurrentImageContext();
+//                               UIGraphicsEndImageContext();
+                               
+                           });
+                               float millisElapsed = [[NSDate date] timeIntervalSinceDate:_startedAt] * 1000.0-_spaceDate*1000.0;
+                               CMTime cmTime =  CMTimeMake((int)millisElapsed, 1000);
+                               //NSLog(@"millisElapsed = %f",millisElapsed);
+                               [self writeVideoFrameAtTime:cmTime addImage:image.CGImage];
+                           //if (cgImage) {
+                           //CGImageRelease(cgImage);
+                           //}
+                           
+                       }
+                       @catch (NSException *exception) {
+                           
+                       }
+                       //    _writing = false;
+                   }
+                   // }
+                   );
 }
 -(void) writeVideoFrameAtTime:(CMTime)time addImage:(CGImageRef )newImage
 {
@@ -156,53 +193,10 @@
         }
     }
 }
-- (void)getFrame
-{
-    dispatch_async(self.queue, ^
-                   {
-                       if (!_writing) {
-                           _writing = true;
-                           @try {
-                               __block UIImage *image = nil;
-                               dispatch_sync(dispatch_get_main_queue(), ^{
-                                   //CGImageRef cgImage = nil;
-                                   //截出来的是原图（YES 0.0 质量高）
-                                   UIGraphicsBeginImageContextWithOptions(self.captureView.bounds.size,YES,0);
-                                   
-                                   //之前YES unActive状态屏幕会闪
-                                   [self.captureView drawViewHierarchyInRect:self.captureView.bounds afterScreenUpdates:NO];
-                                   
-                                   image = UIGraphicsGetImageFromCurrentImageContext();
-                                   //CGImageRef cgImage = CGImageCreateCopy(image.CGImage);
-                                   
-                                   UIGraphicsEndImageContext();
-                                   
-                               });
-                               //image.CGImage;
-                               
-                               
-                               if (_recording) {
-                                   float millisElapsed = [[NSDate date] timeIntervalSinceDate:startedAt] * 1000.0-_spaceDate*1000.0;
-                                   CMTime cmTime =  CMTimeMake((int)millisElapsed, 1000);
-                                   //NSLog(@"millisElapsed = %f",millisElapsed);
-                                   [self writeVideoFrameAtTime:cmTime addImage:image.CGImage];
-                                   
-                               }
-                               //if (cgImage) {
-                               //CGImageRelease(cgImage);
-                               //}
-                               
-                           }
-                           @catch (NSException *exception) {
-                               
-                           }
-                           _writing = false;
-                       }
-                   });
-}
+
 
 - (void)setUpWriter {
-    CGSize size = self.captureLayer.frame.size;
+    CGSize size = self.captureView.frame.size;
     //Clear Old TempFile
     NSError  *error = nil;
     NSString *filePath = [JMVideoCaptureUtility getTempVideoCaptureFilePath];
@@ -264,13 +258,13 @@
     }
     
     [self.videoWriter finishWritingWithCompletionHandler:^{
-//        if ([_delegate respondsToSelector:@selector(recordingFinished:)]) {
-//            [_delegate recordingFinished:[self tempFilePath]];
-//        }
+        if ([_delegate respondsToSelector:@selector(recordingFinished:)]) {
+            [_delegate recordingFinished:[JMVideoCaptureUtility getTempVideoCaptureFilePath]];
+        }
     }];
 }
 
-- (void) cleanupWriter {
+- (void)cleanupWriter {
     
     self.avAdaptor = nil;
     
@@ -278,11 +272,8 @@
     
     self.videoWriter = nil;
     
-//    startedAt = nil;
+    self.startedAt = nil;
     
-    
-    //CGContextRelease(context);
-    //context=NULL;
 }
 
 @end

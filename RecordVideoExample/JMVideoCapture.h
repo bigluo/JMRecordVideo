@@ -8,12 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+@protocol JMVideoCaptureDelegate <NSObject>
+
+- (void)recordingFinished:(NSString*)outputPath;
+- (void)recordingFaild:(NSError *)error;
+
+@end
+
 @interface JMVideoCapture : NSObject
 /**
  * 帧率
  */
 @property(nonatomic, assign) NSUInteger frameRate;
-
-- (bool)startRecordingWithCaptureView:(UIView *)captureView;
-- (void)endRecording;
+@property(nonatomic, weak) id<JMVideoCaptureDelegate> delegate;
+- (bool)beginRecordWithView:(UIView *)recordView;
+- (void)endRecord;
 @end
