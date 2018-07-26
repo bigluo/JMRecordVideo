@@ -11,6 +11,11 @@
 		9D0160F32100B1AB00BCF217 /* JMAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0160ED2100B1AA00BCF217 /* JMAudioRecorder.m */; };
 		9D0160F42100B1AB00BCF217 /* JMVideoCaptureUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0160F12100B1AB00BCF217 /* JMVideoCaptureUtility.m */; };
 		9D1F6B032102CAE500CDE946 /* JMVideoCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1F6B022102CAE500CDE946 /* JMVideoCaptureHelper.m */; };
+		9D44D2A821097B3200D32F58 /* BlazeiceAudioRecordAndTransCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D44D29F21097B3200D32F58 /* BlazeiceAudioRecordAndTransCoding.m */; };
+		9D44D2A921097B3200D32F58 /* THCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D44D2A021097B3200D32F58 /* THCapture.m */; };
+		9D44D2AB21097B3200D32F58 /* THCaptureUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D44D2A621097B3200D32F58 /* THCaptureUtilities.m */; };
+		9D44D2AE21097B9500D32F58 /* RecordVideoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D44D2AC21097B9400D32F58 /* RecordVideoTool.m */; };
+		9D44D2B02109936800D32F58 /* binding_AP_robot.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D44D2AF2109936800D32F58 /* binding_AP_robot.png */; };
 		9D86E2DC21072221003ECAE3 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9D86E2DB21072221003ECAE3 /* test.mp4 */; };
 		9DCC0E7320FC9C700064617F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCC0E7220FC9C700064617F /* AppDelegate.m */; };
 		9DCC0E7620FC9C700064617F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCC0E7520FC9C700064617F /* ViewController.m */; };
@@ -30,6 +35,15 @@
 		9D0160F12100B1AB00BCF217 /* JMVideoCaptureUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMVideoCaptureUtility.m; sourceTree = "<group>"; };
 		9D1F6B012102CAE500CDE946 /* JMVideoCaptureHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JMVideoCaptureHelper.h; sourceTree = "<group>"; };
 		9D1F6B022102CAE500CDE946 /* JMVideoCaptureHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JMVideoCaptureHelper.m; sourceTree = "<group>"; };
+		9D44D29F21097B3200D32F58 /* BlazeiceAudioRecordAndTransCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlazeiceAudioRecordAndTransCoding.m; sourceTree = "<group>"; };
+		9D44D2A021097B3200D32F58 /* THCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCapture.m; sourceTree = "<group>"; };
+		9D44D2A121097B3200D32F58 /* THCaptureUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCaptureUtilities.h; sourceTree = "<group>"; };
+		9D44D2A321097B3200D32F58 /* BlazeiceAudioRecordAndTransCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlazeiceAudioRecordAndTransCoding.h; sourceTree = "<group>"; };
+		9D44D2A521097B3200D32F58 /* THCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THCapture.h; sourceTree = "<group>"; };
+		9D44D2A621097B3200D32F58 /* THCaptureUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THCaptureUtilities.m; sourceTree = "<group>"; };
+		9D44D2AC21097B9400D32F58 /* RecordVideoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordVideoTool.m; sourceTree = "<group>"; };
+		9D44D2AD21097B9500D32F58 /* RecordVideoTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordVideoTool.h; sourceTree = "<group>"; };
+		9D44D2AF2109936800D32F58 /* binding_AP_robot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = binding_AP_robot.png; sourceTree = "<group>"; };
 		9D86E2DB21072221003ECAE3 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		9DCC0E6E20FC9C700064617F /* RecordVideoExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordVideoExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DCC0E7120FC9C700064617F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -55,6 +69,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D44D29C21097B3200D32F58 /* THC */ = {
+			isa = PBXGroup;
+			children = (
+				9D44D29F21097B3200D32F58 /* BlazeiceAudioRecordAndTransCoding.m */,
+				9D44D2A021097B3200D32F58 /* THCapture.m */,
+				9D44D2A121097B3200D32F58 /* THCaptureUtilities.h */,
+				9D44D2A321097B3200D32F58 /* BlazeiceAudioRecordAndTransCoding.h */,
+				9D44D2A521097B3200D32F58 /* THCapture.h */,
+				9D44D2A621097B3200D32F58 /* THCaptureUtilities.m */,
+			);
+			name = THC;
+			path = "../../../归档/罗俊茂/note/奇奇宝贝最终版/KidRobot/Libs/RecordVideo/THC";
+			sourceTree = "<group>";
+		};
 		9D86E2DA21072221003ECAE3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +94,7 @@
 		9DCC0E6520FC9C700064617F = {
 			isa = PBXGroup;
 			children = (
+				9D44D2AF2109936800D32F58 /* binding_AP_robot.png */,
 				9DCC0E7020FC9C700064617F /* RecordVideoExample */,
 				9DCC0E6F20FC9C700064617F /* Products */,
 			);
@@ -82,6 +111,9 @@
 		9DCC0E7020FC9C700064617F /* RecordVideoExample */ = {
 			isa = PBXGroup;
 			children = (
+				9D44D2AD21097B9500D32F58 /* RecordVideoTool.h */,
+				9D44D2AC21097B9400D32F58 /* RecordVideoTool.m */,
+				9D44D29C21097B3200D32F58 /* THC */,
 				9D86E2DA21072221003ECAE3 /* Resource */,
 				9D0160EE2100B1AB00BCF217 /* JMAudioRecorder.h */,
 				9D0160ED2100B1AA00BCF217 /* JMAudioRecorder.m */,
@@ -168,6 +200,7 @@
 				9DCC0E7B20FC9C700064617F /* Assets.xcassets in Resources */,
 				9D86E2DC21072221003ECAE3 /* test.mp4 in Resources */,
 				9DCC0E7920FC9C700064617F /* Main.storyboard in Resources */,
+				9D44D2B02109936800D32F58 /* binding_AP_robot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,13 +211,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D44D2AE21097B9500D32F58 /* RecordVideoTool.m in Sources */,
+				9D44D2A921097B3200D32F58 /* THCapture.m in Sources */,
 				9DCC0E7620FC9C700064617F /* ViewController.m in Sources */,
 				9D0160F22100B1AB00BCF217 /* JMVideoCapture.m in Sources */,
 				9D0160F32100B1AB00BCF217 /* JMAudioRecorder.m in Sources */,
 				9D1F6B032102CAE500CDE946 /* JMVideoCaptureHelper.m in Sources */,
 				9DCC0E8120FC9C700064617F /* main.m in Sources */,
+				9D44D2A821097B3200D32F58 /* BlazeiceAudioRecordAndTransCoding.m in Sources */,
 				9D0160F42100B1AB00BCF217 /* JMVideoCaptureUtility.m in Sources */,
 				9DCC0E7320FC9C700064617F /* AppDelegate.m in Sources */,
+				9D44D2AB21097B3200D32F58 /* THCaptureUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

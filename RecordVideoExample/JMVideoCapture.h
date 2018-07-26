@@ -20,6 +20,7 @@
  * 帧率
  */
 @property(nonatomic, assign) NSUInteger frameRate;
+
 @property(nonatomic, weak) id<JMVideoCaptureDelegate> delegate;
 - (bool)beginRecordWithView:(UIView *)recordView;
 - (void)endRecord;

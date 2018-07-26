@@ -105,31 +105,10 @@
 
 - (void)mergedidFinish
 {
-    NSDateFormatter* dateFormatter=[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:SS"];
-    NSString* currentDateStr=[dateFormatter stringFromDate:[NSDate date]];
+    NSString* path = [JMVideoCaptureUtility getOutputCaptureFilePath];
     
-    NSString* fileName=[NSString stringWithFormat:@"白板录制,%@.mov",currentDateStr];
-    
-    NSString* path=[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",fileName]];
-    
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:videoPath])
-//    {
-//        NSError *err=nil;
-//        [[NSFileManager defaultManager] moveItemAtPath:videoPath toPath:path error:&err];
-//    }
-    
-//    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"allVideoInfo"]) {
-//        NSMutableArray* allFileArr=[[NSMutableArray alloc] init];
-//        [allFileArr addObjectsFromArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"allVideoInfo"]];
-//        [allFileArr insertObject:fileName atIndex:0];
-//        [[NSUserDefaults standardUserDefaults] setObject:allFileArr forKey:@"allVideoInfo"];
-//    }
-//    else{
-//        NSMutableArray* allFileArr=[[NSMutableArray alloc] init];
-//        [allFileArr addObject:fileName];
-//        [[NSUserDefaults standardUserDefaults] setObject:allFileArr forKey:@"allVideoInfo"];
-//    }
+ 
+
     
     //音频与视频合并结束，存入相册中
     if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(path)) {
@@ -148,6 +127,10 @@
     NSLog(@"撤销录制");
     self.recording = NO;
     [self.capture endRecord];
+    if (self.audioRecorder) {
+        [self.audioRecorder endRecord];
+    }
+  
 }
 
 - (NSString*)getPathByFileName:(NSString *)_fileName ofType:(NSString *)_type

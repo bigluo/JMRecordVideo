@@ -39,11 +39,18 @@
 /**
  * 录制定时器
  */
-@property(strong, nonatomic) CADisplayLink *displayLink;
+@property(nonatomic, strong) dispatch_source_t timer;
+//@property(nonatomic, strong) CADisplayLink *displayLink;
+//
+//@property(nonatomic, strong) NSTimer *recordTimer;
 
-@property(strong, nonatomic) NSDate *startedAt;
+@property(nonatomic, strong) NSDate *startedAt;
 
-@property(nonatomic,  assign) float spaceDate;
+@property(nonatomic, assign) float spaceDate;
+/** 正在将帧写入文件 */
+@property(nonatomic, assign) BOOL writing;
+/** 正在录制中 */
+@property(nonatomic, assign) BOOL recording;
 
 @end
 @implementation JMVideoCapture
@@ -52,7 +59,7 @@
 {
     self = [super init];
     if (self) {
-//        self.frameRate = 24;默认帧率
+        self.frameRate = 24;//默认帧率
         self.captureQueue = dispatch_queue_create([@"com.bigluo.screen_recorder" cStringUsingEncoding:NSUTF8StringEncoding], NULL);
     }
     
@@ -62,19 +69,26 @@
 - (bool)beginRecordWithView:(UIView *)recordView
 {
     bool result = NO;
-    if (recordView)
+    if (!_recording && recordView)
     {
         self.captureView = recordView;
         [self setUpWriter];
+        self.writing = false;
+        self.recording = true;
         self.startedAt = [NSDate date];
-        self.spaceDate=0;
-        self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(drawFrame)];
-            //            self.displayLink.frameInterval = 2;//用来设置间隔多少帧调用一次selector方法，默认值是1，即每帧都调用一次。
-            if (_frameRate != 0) {
-                //preferredFramesPerSecond
-                 self.displayLink.frameInterval = 1.0/_frameRate;
-            }
-            [self.displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+        self.spaceDate = 0;
+
+        dispatch_source_t  timer= dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, self.captureQueue);
+        self.timer = timer;
+        dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1.0/_frameRate * NSEC_PER_SEC, 0.1 * NSEC_PER_SEC);
+        dispatch_source_set_event_handler(timer, ^{
+            [self drawFrame];
+        });
+        dispatch_resume(timer);
+        
+//        self.recordTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/_frameRate target:self selector:@selector(drawFrame) userInfo:nil repeats:YES];
+//        [[NSRunLoop currentRunLoop] addTimer:_recordTimer forMode:NSRunLoopCommonModes];
+//        [self.recordTimer fire];
         }
     return result;
 }
@@ -83,20 +97,32 @@
 {
     dispatch_async(_captureQueue, ^
                    {
-                       [self.displayLink invalidate];
-                       self.displayLink = nil;
+                       if (_recording) {
+                           _recording = false;
+                           if (self.timer) {
+                               dispatch_source_cancel(_timer);
+                               self.timer = nil;
+                           }
+
+//                       [self.displayLink invalidate];
+//                       self.displayLink = nil;
                        [self completeRecordingSession];
                        [self cleanupWriter];
+                       }
                    });
 }
 
 - (void)drawFrame
 {
-    static int count = 0;
+    if (_writing) {
+        return;
+    }
+//    _spaceDate = _spaceDate+1.0/_frameRate;
+//    static int count = 0;
     dispatch_async(self.captureQueue, ^
                    {
-                       //if (!_writing) {
-                       //    _writing = true;
+                       if (!_writing) {
+                        _writing = true;
                        @try {
                            __block UIImage *image = nil;
                            dispatch_sync(dispatch_get_main_queue(), ^{
@@ -120,10 +146,13 @@
 //                               UIGraphicsEndImageContext();
                                
                            });
+                           if (_recording) {
                                float millisElapsed = [[NSDate date] timeIntervalSinceDate:_startedAt] * 1000.0-_spaceDate*1000.0;
                                CMTime cmTime =  CMTimeMake((int)millisElapsed, 1000);
                                //NSLog(@"millisElapsed = %f",millisElapsed);
                                [self writeVideoFrameAtTime:cmTime addImage:image.CGImage];
+                               
+                           }
                            //if (cgImage) {
                            //CGImageRelease(cgImage);
                            //}
@@ -132,11 +161,11 @@
                        @catch (NSException *exception) {
                            
                        }
-                       //    _writing = false;
+                       _writing = false;
                    }
-                   // }
-                   );
+            });
 }
+
 -(void) writeVideoFrameAtTime:(CMTime)time addImage:(CGImageRef )newImage
 {
     if (![self.videoWriterInput isReadyForMoreMediaData]) {

@@ -13,6 +13,7 @@ typedef void (^completeBlock)(NSError *error);
 @interface JMVideoCaptureUtility : NSObject
 + (NSString *)getTempVideoCaptureFilePath;
 + (NSString *)getTempAudioCaptureFilePath;
++ (NSString *)getOutputCaptureFilePath;
 + (void)removeAudioAndVideoTempFile;
 
 /** 音频与视频的合并 */

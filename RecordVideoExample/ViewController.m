@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "JMVideoCaptureHelper.h"
+#import "RecordVideoTool.h"
+
 @interface ViewController ()
 @property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;
@@ -17,6 +19,8 @@
 @property (nonatomic, assign) BOOL playing;
 @property (nonatomic, strong) UIView *playerView;
 
+
+@property (nonatomic, strong) UIImageView *imageView;
 @end
 
 @implementation ViewController
@@ -63,6 +67,11 @@
     [endRecordButton setTitle:@"停止录制" forState:UIControlStateNormal];
     [endRecordButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [endRecordButton addTarget:self action:@selector(endRecord) forControlEvents:UIControlEventTouchUpInside];
+
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(stopButton.frame.origin.x, CGRectGetMaxY(endRecordButton.frame)+30, 200, 200)];
+    self.imageView = imageView;
+    imageView.image = [UIImage imageNamed:@"binding_AP_robot"];
+    [self.view addSubview:imageView];
 }
 
 - (void)setupPlayer{
@@ -85,7 +94,8 @@
     [self.playerView.layer addSublayer:_playerLayer];
     
     self.playerLayer.frame = CGRectMake(0, 0, self.playerView.frame.size.width, self.playerView.frame.size.height);
-    
+//    AVPlayerViewController *playerVC = [[AVPlayerViewController alloc]init]; playerVC.showsPlaybackControls = NO; playerVC.player = player;
+    //[playerVC setVideoGravity:AVLayerVideoGravityResize]; playerVC.view.frame = CGRectMake(0, 20, ScreenWidth, ScreenWidth*9/16); [player play];
     
 }
 
@@ -112,7 +122,9 @@
         return;
     }
     NSLog(@"开始录制视频");
-     [[JMVideoCaptureHelper sharedInstances]recordWithView:self.playerView];
+//    [[RecordVideoTool sharedInstances]recordMustSuccess:_imageView];
+//    [[RecordVideoTool sharedInstances]recordMustSuccess:self.playerView];
+     [[JMVideoCaptureHelper sharedInstances]recordWithView:_playerView];
     
 //    [[JMVideoCaptureHelper sharedInstances]recordWithLayer:self.playerView.layer];
     
@@ -120,6 +132,7 @@
 
 - (void)endRecord{
     NSLog(@"结束录制");
+//    [[RecordVideoTool sharedInstances]StopRecord];;
     [[JMVideoCaptureHelper sharedInstances] StopRecord];
     
 }

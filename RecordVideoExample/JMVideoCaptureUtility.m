@@ -15,7 +15,7 @@
 
 static NSString* const kVideoFileName = @"outputVideo.mov";
 static NSString* const kAudioFileName = @"outputAudio.wav";
-
+static NSString* const kOutputFileName = @"export2.mov";
 + (NSString *)getTempVideoCaptureFilePath{
     NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:kVideoFileName];
@@ -28,6 +28,19 @@ static NSString* const kAudioFileName = @"outputAudio.wav";
     NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:kAudioFileName];
     return filePath;
 }
+
++ (NSString *)getOutputCaptureFilePath{
+//    NSDateFormatter* dateFormatter=[[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:SS"];
+//    NSString* currentDateStr=[dateFormatter stringFromDate:[NSDate date]];
+//
+//    NSString* fileName=[NSString stringWithFormat:@"%@",currentDateStr];
+    
+    NSString* exportPath=[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@",kOutputFileName]];
+    
+    return exportPath;
+}
+
 
 + (void)removeAudioAndVideoTempFile{
     NSString *videoFilePath = [JMVideoCaptureUtility getTempVideoCaptureFilePath];
@@ -76,8 +89,7 @@ static NSString* const kAudioFileName = @"outputAudio.wav";
         return;
     }
     //保存混合后的文件的过程
-    NSString* videoName = @"export2.mov";
-    NSString *exportPath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:videoName];
+    NSString *exportPath = [JMVideoCaptureUtility getOutputCaptureFilePath];
     NSURL    *exportUrl = [NSURL fileURLWithPath:exportPath];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:exportPath])
